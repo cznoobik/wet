@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Hlasování o písních</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    #zasobnik, #hlasovani {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      padding: 20px;
+      border: 2px dashed #ccc;
+      min-height: 150px;
+      background-color: #f9f9f9;
+      margin-bottom: 30px;
+    }
+
+    img {
+      width: 120px;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      cursor: grab;
+      transition: transform 0.2s ease;
+    }
+
+    img:active {
+      cursor: grabbing;
+      transform: scale(1.05);
+    }
+
+    .vote-item {
+      text-align: center;
+    }
+
+    .vote-item span {
+      display: block;
+      margin-top: 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Vyber své 3 oblíbené písně</h2>
+
+<h3>Zásobník:</h3>
+<div id="zasobnik">
+  <img src="Images/Ado.jpg" alt="Ado" draggable="true" id="Ado">
+  <img src="Images/Banshee.jpg" alt="Banshee" draggable="true" id="Banshee">
+  <img src="Images/BloodyStream.jpg" alt="BloodyStream" draggable="true" id="BloodyStream">
+  <img src="Images/Kanonenfieber.jpg" alt="Kanonenfieber" draggable="true" id="Kanonenfieber">
+  <img src="Images/NonEstDeus.jpg" alt="Ado" draggable="true" id="NonEstDeus">
+</div>
+
+<h3>Hlasování:</h3>
+<div id="hlasovani" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+
+<audio id="ding" src="Sounds/cink.mp3" preload="auto"></audio>
+
+<script>
+  const hlasovani = document.getElementById('hlasovani');
+  const ding = document.getElementById('ding');
+
+  let draggedId = null;
+
+  // Připrav dragstart pro všechny obrázky v zásobníku
+  document.querySelectorAll('#zasobnik img').forEach(img => {
+    img.addEventListener('dragstart', e => {
+      draggedId = e.target.id;
+    });
+  });
+
+  function allowDrop(event) {
+    event.preventDefault();
+  }
+
+  function drop(event) {
+    event.preventDefault();
+    if (!draggedId) return;
+
+    // Zkontroluj max 3 položky
+    if (hlasovani.childElementCount >= 3 || document.getElementById('vote-' + draggedId)) return;
+
+    const original = document.getElementById(draggedId);
+    const clone = original.cloneNode(true);
+    clone.id = 'vote-' + draggedId;
+
+    clone.addEventListener('click', () => {
+      clone.parentElement.remove(); // odstraní i číslo
+      updateLabels();
+    });
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'vote-item';
+    wrapper.appendChild(clone);
+
+    const label = document.createElement('span');
+    wrapper.appendChild(label);
+
+    hlasovani.appendChild(wrapper);
+    updateLabels();
+    ding.play();
+  }
+
+  function updateLabels() {
+    const items = hlasovani.querySelectorAll('.vote-item');
+    items.forEach((item, index) => {
+      const label = item.querySelector('span');
+      label.textContent = `${index + 1}.`;
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,809 @@
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Základní styl pro tělo stránky */
+body {
+    color: rgb(75, 21, 70);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+/* Navbar */
+/* Základní styl navbaru */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+
+/* Container uvnitř navbaru */
+.nav-container {
+    display: flex;
+    justify-content: center; /* Zarovnání na střed */
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Odkazy v navbaru */
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: rgb(75, 21, 70);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Skrytí hamburger menu na velkých obrazovkách */
+.menu-icon {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: rgb(75, 21, 70);
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%; /* Přes celou šířku */
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 0; /* Odebrání zaoblení */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Styl pro odkazy v dropdown menu */
+.dropdown-menu a {
+    color: rgb(114, 17, 106);
+    padding: 12px;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Hero sekce */
+.hero {
+    width: 100%;
+    height: 100vh;
+    background-image: url("../Images/kniha.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: rgb(114, 17, 106);
+
+    background-attachment: fixed;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin: 0;
+    color: rgb(114, 17, 106);
+}
+
+.hero span {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgb(114, 17, 106);
+}
+
+/* About sekce */
+.aboutWrapper {
+    width: 100%;
+    background-color: rgb(114, 17, 106);
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+/* About sekce */
+.about {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+}
+
+/* Obrázková část */
+.about-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+/* Textová část */
+.about-text {
+    flex: 1;
+}
+
+/* Vertikální čára ZA textem */
+.about-divider {
+    width: 3px; /* Tloušťka čáry */
+    height: 150px; /* Výška čáry */
+    background-color: black; /* Barva čáry */
+    border-radius: 2px;
+}
+
+.about-text h1 {
+    font-size: 2.5em;
+    color: black;
+}
+
+.about-text p {
+    font-size: 1.2em;
+    color: black;
+    line-height: 1.6;
+}
+
+.projectsWrapper {
+    width: 100%;
+    background-image: url("../Images/kniha.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Přizpůsobí se velikosti obrazovky */
+    gap: 20px;
+    width: 90vw; /* Zvětšení šířky */
+    max-width: 1400px; /* Volitelně větší max-width */
+    margin: auto;
+    padding: 20px 0;
+}
+
+/* Responzivita: Pokud je menší obrazovka, tak snížit počet sloupců */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 sloupce na menších obrazovkách */
+    }
+    .skills-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 sloupce na menších obrazovkách */
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 sloupce na menších obrazovkách */
+    }
+    .fullscreen-text {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 sloupce na mobilech */
+    }
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 sloupce na mobilech */
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 sloupce na mobilech */
+    }
+    .fullscreen-text {
+        font-size: 1em;
+    }
+
+    .fullscreen-img-wrapper {
+        flex-direction: column; /* Text bude pod obrázkem */
+    }
+
+    .nav-links {
+            display: none;
+        }
+
+        .menu-icon {
+            display: block;
+        }
+
+    
+}
+
+
+@media (max-width: 600px) {
+    .contact-content {
+        flex-direction: column; /* Prvky se přeskládají pod sebe */
+        gap: 15px;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .social-icons svg {
+        width: 30px; /* Zmenšení ikon */
+        height: 30px;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    .contact-info p {
+        font-size: 1em; /* Zmenšení textu */
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 sloupec na velmi malých displejích */
+    }
+    .skills-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 sloupec na malých displejích */
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 sloupec na malých displejích */
+    }
+    .fullscreen-text {
+        font-size: 0.9em;
+        max-width: 90%;
+    }
+
+    .fullscreen-img-wrapper img {
+        max-height: 50vh; /* Menší obrázek na velmi malých displejích */
+    }
+
+    @media screen and (max-width: 700px) {
+        .hero {
+            font-size: 2.23vw;
+        }
+    }
+}
+
+/* Styl pro jednotlivé projekty */
+.project-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    background: rgb(114, 17, 106); /* Jemné pozadí */
+    padding: 15px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.project-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.project-text {
+    margin-top: 10px;
+    color: black;
+}
+
+.projects h1{
+    margin-top: 10px;
+    font-size: 3rem;
+    color: rgb(114, 17, 106);
+    justify-content: center;
+    display: flex;
+}
+
+.project-text h2 {
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+.project-text p {
+    font-size: 1em;
+    opacity: 0.8;
+}
+
+.project-text h6 {
+    font-size: 0.8em;
+    margin: 5px 0;
+    opacity: 0.8;
+}
+
+/* Efekt při najetí myší */
+.project-item:hover {
+    background: rgba(245, 245, 245, 0.758);
+    transform: scale(1.1);
+}
+
+
+.skillsWrapper {
+    width: 100%;
+    background-color: rgb(114, 17, 106);
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.skills {
+    width: 80%; /* Zmenší celkovou šířku */
+    max-width: 1000px; /* Místo 1200px dáme 1000px */
+    text-align: center;
+}
+
+.skills h1{
+    margin-top: 10px;
+    font-size: 3rem;
+    color: #aa5454;
+    justify-content: center;
+    display: flex;
+}
+
+.skills h2 {
+    margin-top: 40px;
+    font-size: 1,5em;
+    color: #aa5454;
+}
+
+/* Grid styl */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Pokud je jen jeden item na řádce, roztáhne se na celou šířku */
+    gap: 20px;
+    width: 100%; /* Zajistí, že bude mít celou šířku rodiče */
+    max-width: 1400px; /* Zůstane maximální šířka pro velké obrazovky */
+    margin: 0 auto; /* Zarovná na střed */
+    padding: 20px 0;
+    align-items: stretch; /* Zajišťuje, že všechny položky se roztáhnou na stejnou výšku */
+}
+
+/* Styl pro jednotlivé položky */
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(75, 21, 70);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.skill-item img {
+    width: 50px; /* Nastav velikost loga */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.skill-item span {
+    font-size: 1.2em;
+    color: #aa5454;
+    font-weight: bold;
+}
+
+/* Hover efekt */
+.skill-item:hover {
+    transform: scale(1.1);
+}
+
+#skillLevel{
+    font-size: 0.8em;
+    color: #aa5454;
+    font-weight: bold;
+}
+
+/* Wrapper pro galerii */
+.galleryWrapper {
+    width: 100%;
+    background-image: url("../1000013629.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+/* Galerie */
+.gallery {
+    width: 90vw;
+    max-width: 1400px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Grid pro galerii */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 20px;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.gallery h1{
+    margin-top: 10px;
+    font-size: 3rem;
+    color: rgb(114, 17, 106);
+    justify-content: center;
+    display: flex;
+}
+
+/* Položky v galerii */
+.gallery-item {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid #aa5454;
+}
+
+/* Obrázky */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover efekt pro obrázky (zvětšení obrázku a rámečku) */
+.gallery-item:hover {
+    transform: scale(1.05); /* Zvětší celý obrázek i rámeček */
+    border-color: rgb(75, 21, 70); /* Při hoveru obrázek dostane bílý rámeček */
+}
+
+/* Overlay s textem - skrytý, dokud na něj neklikneme */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Poloprůhledné pozadí */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 15px;
+    pointer-events: none; /* Zajistí, že overlay nebude rušit kliknutí */
+}
+
+.overlay .hidden-text {
+    color: rgb(75, 21, 70);
+    font-size: 1.5em;
+    text-align: center;
+    display: none;
+}
+
+/* Zobrazení textu při kliknutí na obrázek */
+.gallery-item.active .overlay {
+    opacity: 1;
+    pointer-events: all; /* Umožní interakci s overlay */
+}
+
+.gallery-item.active .hidden-text {
+    display: block; /* Zobrazí text při aktivaci */
+}
+
+/* Fullscreen efekty */.fullscreen-img-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Výchozí - text pod obrázkem */
+    z-index: 1000;
+    padding: 20px;
+    text-align: center;
+}
+
+.fullscreen-img-wrapper img {
+    max-width: 90%;
+    max-height: 70vh; /* Zajišťuje, že obrázek nepřekryje celý obsah */
+    border-radius: 10px;
+}
+
+.fullscreen-text {
+    color: rgb(114, 17, 106);
+    font-size: 1.5em; /* Výchozí velikost textu */
+    text-align: center;
+    margin-top: 15px;
+    max-width: 80%;
+    transition: font-size 0.3s ease-in-out;
+}
+
+
+
+
+.contactsWrapper {
+    width: 100%;
+    background-color: rgb(114, 17, 106);
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.contacts {
+    text-align: center;
+    color: #aa5454;
+    width: 80%;
+    max-width: 600px;
+}
+
+.contacts h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.contacts hr {
+    width: 50%;
+    border: 1px solid #aa5454;
+    margin: 10px auto 20px auto;
+}
+
+.contact-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Povolit zalomení prvků na menších displejích */
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    stroke: #aa5454;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.social-icons svg {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.2s ease-in-out, width 0.2s ease-in-out, height 0.2s ease-in-out;
+    stroke: #aa5454;
+}
+
+.social-icons svg:hover {
+    transform: scale(1.2);
+}
+
+.divider {
+    width: 3px;
+    height: 80px;
+    background-color: #aa5454;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.contact-info p {
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+
+
+
+.youtube:hover { fill: red; }
+.twitter:hover { fill: #7289DA; }
+.github:hover { fill: #303958; }
+.instagram:hover { fill: #E1306C; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: rgb(75, 21, 70);
+    color: #aa5454;
+    }
+    
+    .footerIcons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 100px;
+    stroke: #aa5454;
+    }    
+    
+    .icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    stroke: #aa5454;
+    }
+    
+
+    .icon:hover {
+        transform: scale(1.2);
+    }
+    
+    .footerContacts {
+    margin-top: 10px;
+    }
+    
+    .footerContacts a {
+    color: #aa5454;
+    }
+    
+    .footerExtras {
+    margin-top: 10px;
+    }
+    
+    .svgIcon{
+    stroke:#aa5454;
+    }
+    
+    .footerExtras .icon {
+    display: flex;
+    justify-content: center;  /* Zarovná ikony na střed horizontálně */
+    align-items: center;      /* Zarovná ikony na střed vertikálně */
+    margin: 45px;  /* Volitelné: přidání mezery mezi ikonami */
+    margin-left: 45%;
+    stroke: #aa5454;
+    }
+
+
+
+
+
+    /* EXPERIMENTAL */
+
+    .experimentalWrapper {
+        width: 100%;
+        background-color: #723232; /* Světle šedé pozadí pro kontrast */
+        display: flex;
+        justify-content: center;
+        padding: 50px 0;
+    }
+
+    .experimental {
+        background-color: #723232;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 800px;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    input {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+
+    .ultimate-button {
+        padding: 15px 30px;
+        background-color: red;
+        color: rgb(75, 21, 70);
+        font-size: 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .map-container {
+        height: 300px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .destroyed {
+        animation: destroy 2s forwards;
+    }
+
+    @keyframes destroy {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+
+
+    body {
+        background-color: #723232; /* Světlé pozadí pro běžné monitory */
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+
+
+
+
+
+    
+
+   
+/* Skrytí vtípku pro běžné monitory */
+.wide-screen-easter-egg {
+    display: none;
+}
+
+/* Extra široké monitory (poměr větší než 21:9) */
+@media (min-aspect-ratio: 21/9) {
+    body {
+        background: rgb(75, 21, 70);
+        color: rgb(75, 21, 70);
+    }
+
+    .wide-screen-easter-egg {
+        display: block; /* Ukáže se jen na ultrawide monitorech */
+        position: fixed;
+        bottom: 20px;  /* Umístí do spodního okraje */
+        right: 20px;   /* Umístí do pravého okraje */
+        font-size: 24px;
+        font-family: 'Comic Sans MS', cursive;
+        text-align: center;
+        color: #ffcc00;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        animation: blink 1.5s infinite alternate;
+    }
+
+    @keyframes blink {
+        0% { opacity: 1; }
+        100% { opacity: 0.5; }
+    }
+}
