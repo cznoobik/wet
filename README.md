@@ -1,9 +1,9 @@
 # School Web Projects
 ---
 
-![Content](https://img.shields.io/badge/Content-red)
+![Contents](https://img.shields.io/badge/Contents-red)
 
-## Second Year
+### Second Year
 
 >![Project Radio](https://img.shields.io/badge/Project-Radio-blue)
 >---
