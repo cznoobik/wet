@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>SSE - změna barvy</title>
+</head>
+<body>
+  <h1>SSE demo – změna barvy</h1>
+  <button onclick="changeColor()">Změnit barvu všem</button>
+
+  <script>
+    // Připojení k SSE
+    const eventSource = new EventSource("sse.php");
+
+    eventSource.onmessage = function(event) {
+      document.body.style.backgroundColor = event.data;
+    };
+
+    function changeColor() {
+      fetch("trigger.php")
+        .then(response => response.text())
+        .then(console.log);
+    }
+  </script>
+</body>
+</html>
