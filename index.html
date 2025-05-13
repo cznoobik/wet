@@ -203,6 +203,16 @@
   </div>
 
   <script>
+    // Skrýt všechny seznamy při načítání stránky
+    window.onload = function() {
+      var lists = document.querySelectorAll('.list-container');
+      lists.forEach(function(list) {
+        list.style.display = 'none';
+      });
+      // Automaticky zobrazit seznam pro 2. ročník (nebo jiný, pokud chceš)
+      showList('rocnika2');
+    };
+
     function showList(rocnika) {
       // Skrýt všechny seznamy
       var lists = document.querySelectorAll('.list-container');
